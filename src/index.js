@@ -13,8 +13,18 @@ function Square({ value, onClick }) {
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
+  function updateSquare(i) {
+    setSquares((previousValue) => {
+      const newValue = [...previousValue];
+
+      // hard-code X for now
+      newValue[i] = "X";
+      return newValue;
+    });
+  }
+
   function renderSquare(i) {
-    return <Square value={squares[i]} onClick={function () {}} />;
+    return <Square value={squares[i]} onClick={() => updateSquare(i)} />;
   }
 
   const status = "Next player: X";
