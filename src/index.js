@@ -4,7 +4,11 @@ import "./index.css";
 
 function Square({ initialValue }) {
   const [value, setValue] = useState(initialValue);
-  return <button className="square">{value}</button>;
+  return (
+    <button className="square" onClick={() => setValue("X")}>
+      {value}
+    </button>
+  );
 }
 
 function Board() {
