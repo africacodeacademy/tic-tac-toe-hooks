@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Square({ value }) {
+function Square({ initialValue }) {
+  const [value, setValue] = useState(initialValue);
   return <button className="square">{value}</button>;
 }
 
 function Board() {
   function renderSquare(i) {
-    return <Square value={i} />;
+    return <Square initialValue={i} />;
   }
 
   const status = "Next player: X";
