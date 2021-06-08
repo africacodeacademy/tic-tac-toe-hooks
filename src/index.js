@@ -12,23 +12,25 @@ function Square({ value, onClick }) {
 
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
 
-  function updateSquare(i) {
+  function handleClick(i) {
     setSquares((previousValue) => {
       const newValue = [...previousValue];
 
-      // hard-code X for now
-      newValue[i] = "X";
+      // determine value based on whose turn it is
+      newValue[i] = xIsNext ? "X" : "O";
       return newValue;
     });
+
+    setXIsNext((previousValue) => !previousValue);
   }
 
   function renderSquare(i) {
-    return <Square value={squares[i]} onClick={() => updateSquare(i)} />;
+    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   }
 
-  const status = "Next player: X";
-
+  const status = "Next player: " + (xIsNext ? "X" : "O");
   return (
     <div>
       <div className="status">{status}</div>
